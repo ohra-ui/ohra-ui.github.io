@@ -1,0 +1,109 @@
+/* Custom styles for OHRA UI landing page */
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #121212;
+}
+
+/* Pulse animation for the 'I'm working on it' text */
+.pulse-circle {
+    position: absolute;
+    width: 450px;
+    height: 450px;
+    border-radius: 50%;
+    background: linear-gradient(to right, rgba(103, 232, 249, 0.2), rgba(167, 139, 250, 0.2), rgba(236, 72, 153, 0.2));
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    animation: color-change 8s infinite alternate, scale-pulse 6s infinite alternate ease-in-out;
+}
+
+.pulse-circle::before {
+    content: "";
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #67e8f9, #a78bfa, #ec4899);
+    z-index: -2;
+    opacity: 0.15;
+    animation: rotate 10s linear infinite;
+}
+
+.pulse-circle::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: transparent;
+    z-index: -1;
+    animation: glow 4s infinite alternate;
+}
+
+@keyframes color-change {
+    0% {
+        background: rgba(103, 232, 249, 0.25); /* Light blue */
+    }
+    50% {
+        background: rgba(167, 139, 250, 0.25); /* Light purple */
+    }
+    100% {
+        background: rgba(236, 72, 153, 0.25); /* Light pink */
+    }
+}
+
+@keyframes scale-pulse {
+    0% {
+        transform: translate(-50%, -50%) scale(0.85);
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(0.9);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1.05);
+    }
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 100px 20px rgba(103, 232, 249, 0.3); /* Blue glow */
+    }
+    50% {
+        box-shadow: 0 0 150px 30px rgba(167, 139, 250, 0.3); /* Purple glow */
+    }
+    100% {
+        box-shadow: 0 0 100px 20px rgba(236, 72, 153, 0.3); /* Pink glow */
+    }
+}
+
+/* Custom gradient text for non-supported browsers */
+@supports not (background-clip: text) {
+    .text-transparent.bg-clip-text {
+        color: #a78bfa; /* Fall back to purple color */
+    }
+}
+
+/* Hover effects */
+a:hover {
+    transform: translateY(-2px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+    .pulse-circle {
+        width: 350px;
+        height: 350px;
+    }
+} 
